@@ -96,7 +96,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Track InitiateCheckout on Pixel if defined
         if (typeof fbq === 'function') {
-          fbq('track', 'InitiateCheckout');
+          fbq('track', 'InitiateCheckout', {
+            content_name: 'Smart Visual Ear Cleaner',
+            content_ids: ['smart-visual-ear-cleaner'],
+            content_type: 'product',
+            value: 25000,
+            currency: 'NGN'
+          });
         }
       }
     });
