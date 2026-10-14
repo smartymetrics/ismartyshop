@@ -120,4 +120,41 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  // 5. Video Autoplay & Tap to Unmute Toggle
+  var heroVideo = document.getElementById('hero-product-video');
+  var unmuteBtn = document.getElementById('unmute-btn');
+  var iconMuted = document.getElementById('sound-icon-muted');
+  var iconActive = document.getElementById('sound-icon-active');
+  var unmuteText = document.getElementById('unmute-text');
+
+  if (heroVideo) {
+    // Ensure muted for browser autoplay policy
+    heroVideo.muted = true;
+    var playPromise = heroVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function () {
+        // Autoplay prevented by browser, keep poster visible or retry on interaction
+      });
+    }
+
+    if (unmuteBtn) {
+      unmuteBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (heroVideo.muted) {
+          heroVideo.muted = false;
+          heroVideo.volume = 1.0;
+          if (iconMuted) iconMuted.style.display = 'none';
+          if (iconActive) iconActive.style.display = 'inline';
+          if (unmuteText) unmuteText.textContent = 'Sound On';
+        } else {
+          heroVideo.muted = true;
+          if (iconMuted) iconMuted.style.display = 'inline';
+          if (iconActive) iconActive.style.display = 'none';
+          if (unmuteText) unmuteText.textContent = 'Tap For Sound';
+        }
+      });
+    }
+  }
 });
+

@@ -75,11 +75,13 @@
           </p>
         </div>
 
-        <!-- Hero Video Showcase (Top Position) -->
+        <!-- Hero Video Showcase (Top Position with Muted Autoplay & Unmute Toggle) -->
         <div class="media-card" style="position: relative; background: #000; border-radius: var(--radius-md); overflow: hidden;">
           <video 
             id="hero-product-video" 
-            controls 
+            autoplay 
+            muted 
+            loop 
             playsinline 
             preload="metadata" 
             poster="../assets/images/amazon_hero.jpg"
@@ -87,6 +89,12 @@
             <source src="../assets/videos/ear_cleaner_demo.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
           </video>
+          <!-- Floating Tap to Unmute Overlay Button -->
+          <button id="unmute-btn" class="unmute-btn" aria-label="Toggle Sound">
+            <svg id="sound-icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <svg id="sound-icon-active" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" style="display: none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            <span id="unmute-text">Tap For Sound</span>
+          </button>
         </div>
 
         <!-- Quick Benefit Pills -->
@@ -137,7 +145,7 @@
 
         <!-- Product Image Showcase -->
         <div class="media-card" style="margin-top: 24px; margin-bottom: 0;">
-          <img src="../assets/images/amazon_hero.jpg" alt="Smart visual ear cleaner connected to phone screen" width="760" height="570">
+          <img src="../assets/images/amazon_hero.jpg" alt="Smart visual ear cleaner connected to phone screen" width="760" height="570" loading="lazy" decoding="async">
           <div class="media-tag">
             <span class="dot"></span>
             Connects to Android & iPhone in 5 Seconds
@@ -155,7 +163,7 @@
         <p class="section-subtitle">Why ENT doctors constantly warn people to never stick cotton buds into their ear canal.</p>
 
         <div class="media-card">
-          <img src="../assets/images/cotton-bud-danger.jpg" alt="Medical comparison between cotton swab and safe silicone scoop" width="760" height="570">
+          <img src="../assets/images/cotton-bud-danger.jpg" alt="Medical comparison between cotton swab and safe silicone scoop" width="760" height="570" loading="lazy" decoding="async">
         </div>
 
         <div class="danger-box">
@@ -215,7 +223,7 @@
         <p class="section-subtitle">Take control of your personal hygiene with medical-grade clarity at home.</p>
 
         <div class="media-card">
-          <img src="../assets/images/amazon_features_lens.jpg" alt="Macro lens and 6 bright LED lights with soft silicone scoop" width="760" height="570">
+          <img src="../assets/images/amazon_features_lens.jpg" alt="Macro lens and 6 bright LED lights with soft silicone scoop" width="760" height="570" loading="lazy" decoding="async">
         </div>
 
         <div class="feature-cards-grid">
@@ -273,7 +281,7 @@
         <p class="section-subtitle">No technical skills needed. Anyone can start cleaning in under 2 minutes.</p>
 
         <div class="media-card" style="margin-bottom: 20px;">
-          <img src="../assets/images/amazon_aplus_steps.jpg" alt="Easy connection steps to phone app" width="760" height="310">
+          <img src="../assets/images/amazon_aplus_steps.jpg" alt="Easy connection steps to phone app" width="760" height="310" loading="lazy" decoding="async">
         </div>
 
         <div class="steps-container">
@@ -313,7 +321,7 @@
         <p class="section-subtitle">You get the complete complete kit ready to use right out of the box.</p>
 
         <div class="media-card">
-          <img src="../assets/images/amazon_aplus_kit.jpg" alt="Complete kit package with ear cleaner, silicone tips, and charging cable" width="760" height="570">
+          <img src="../assets/images/amazon_aplus_kit.jpg" alt="Complete kit package with ear cleaner, silicone tips, and charging cable" width="760" height="570" loading="lazy" decoding="async">
         </div>
 
         <div class="danger-box" style="border-color: #cbd5e1;">
@@ -345,7 +353,7 @@
 
         <!-- Safe For Whole Family Multi-use visual -->
         <div class="media-card" style="margin-top: 24px;">
-          <img src="../assets/images/amazon_aplus_family.png" alt="Safe for the entire family and multiple hygiene uses" width="760" height="420">
+          <img src="../assets/images/amazon_aplus_family.png" alt="Safe for the entire family and multiple hygiene uses" width="760" height="420" loading="lazy" decoding="async">
         </div>
 
       </div>
