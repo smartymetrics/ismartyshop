@@ -31,22 +31,34 @@
     fbq('init', '1215552739327356');
     fbq('track', 'PageView');
     
-    // Fires the Purchase Event for Facebook Ads Optimization
-    fbq('track', 'Purchase', {
-      content_name: 'Smart Visual Ear Cleaner',
-      content_type: 'product',
-      value: 25000,
-      currency: 'NGN'
-    });
-    // Also fires Lead event for campaigns optimizing for Leads
-    fbq('track', 'Lead', {
-      content_name: 'Smart Visual Ear Cleaner',
-      currency: 'NGN'
-    });
+    // Smart Deduplication: Fires Purchase & Lead on first order, 
+    // but blocks duplicate events if the buyer reloads or refreshes within 30 minutes
+    var now = Date.now();
+    var lastPurchase = parseInt(localStorage.getItem('ismarty_last_purchase_time') || '0', 10);
+    var sessionDone = sessionStorage.getItem('ismarty_purchase_done') === 'true';
+    var isDuplicate = sessionDone || ((now - lastPurchase) < (30 * 60 * 1000)); // 30 mins
+
+    if (!isDuplicate) {
+      fbq('track', 'Purchase', {
+        content_name: 'Smart Visual Ear Cleaner',
+        content_type: 'product',
+        value: 25000,
+        currency: 'NGN'
+      });
+      fbq('track', 'Lead', {
+        content_name: 'Smart Visual Ear Cleaner',
+        currency: 'NGN'
+      });
+      sessionStorage.setItem('ismarty_purchase_done', 'true');
+      localStorage.setItem('ismarty_last_purchase_time', now.toString());
+      console.log('Meta Pixel: Purchase & Lead events recorded successfully.');
+    } else {
+      console.log('Meta Pixel: Page reload detected within 30 minutes. Duplicate Purchase event prevented.');
+    }
   </script>
   <noscript>
     <img height="1" width="1" style="display:none" 
-         src="https://www.facebook.com/tr?id=1215552739327356&ev=Purchase&noscript=1"/>
+         src="https://www.facebook.com/tr?id=1215552739327356&ev=PageView&noscript=1"/>
   </noscript>
   <!-- End Facebook / Meta Pixel Code -->
 </head>
