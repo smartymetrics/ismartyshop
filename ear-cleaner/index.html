@@ -75,13 +75,18 @@
           </p>
         </div>
 
-        <!-- Hero Visual Showcase -->
-        <div class="media-card">
-          <img src="../assets/images/amazon_hero.jpg" alt="Smart visual ear cleaner connected to phone screen" width="760" height="570">
-          <div class="media-tag">
-            <span class="dot"></span>
-            Connects to Android & iPhone in 5 Seconds
-          </div>
+        <!-- Hero Video Showcase (Top Position) -->
+        <div class="media-card" style="position: relative; background: #000; border-radius: var(--radius-md); overflow: hidden;">
+          <video 
+            id="hero-product-video" 
+            controls 
+            playsinline 
+            preload="metadata" 
+            poster="../assets/images/amazon_hero.jpg"
+            style="width: 100%; height: auto; display: block;">
+            <source src="../assets/videos/ear_cleaner_demo.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
         </div>
 
         <!-- Quick Benefit Pills -->
@@ -130,27 +135,15 @@
         </a>
         <p class="btn-cta-subtext">Free Delivery Nationwide | Pay Only When You Receive Your Package</p>
 
-      </div>
-    </section>
-
-    <!-- Video Demonstration Section -->
-    <section class="section" style="padding-top: 12px; padding-bottom: 24px;">
-      <div class="container">
-        <h2 class="section-title">See It In Action (Watch Demonstration)</h2>
-        <p class="section-subtitle">Real demonstration showing the 1080P live camera feed and gentle wax removal.</p>
-
-        <div class="media-card" style="position: relative; background: #000; border-radius: var(--radius-md); overflow: hidden;">
-          <video 
-            id="product-demo-video" 
-            controls 
-            playsinline 
-            preload="metadata" 
-            poster="../assets/images/amazon_hero.jpg"
-            style="width: 100%; height: auto; display: block;">
-            <source src="../assets/videos/ear_cleaner_demo.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-          </video>
+        <!-- Product Image Showcase -->
+        <div class="media-card" style="margin-top: 24px; margin-bottom: 0;">
+          <img src="../assets/images/amazon_hero.jpg" alt="Smart visual ear cleaner connected to phone screen" width="760" height="570">
+          <div class="media-tag">
+            <span class="dot"></span>
+            Connects to Android & iPhone in 5 Seconds
+          </div>
         </div>
+
       </div>
     </section>
 
