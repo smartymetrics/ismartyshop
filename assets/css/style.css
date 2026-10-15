@@ -1042,3 +1042,445 @@ a {
   .pricing-cards { flex-direction: row; }
   .pricing-card { flex: 1; }
 }
+
+/* ============================================================
+   PROFESSIONAL WHATSAPP ORDERING SYSTEM & MODAL
+   ============================================================ */
+
+/* 1. Subtle Non-Competing WhatsApp Links (Hero & Form Fallback) */
+.hero-wa-sublink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.order-fallback-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: #f8fafc;
+  border-radius: var(--radius-sm);
+  border: 1px dashed #cbd5e1;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.btn-wa-text-link {
+  background: none;
+  border: none;
+  color: #15803d;
+  font-weight: 700;
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: underline;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.btn-wa-text-link:hover {
+  color: #16a34a;
+}
+
+.btn-whatsapp-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1.5px solid #86efac;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-whatsapp-pill:hover {
+  background: #25d366;
+  color: #ffffff;
+  border-color: #25d366;
+}
+
+/* 3. Sticky Bottom Dual Action Buttons */
+.sticky-action-group {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+}
+
+.sticky-btn-online {
+  flex: 1;
+  background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  padding: 10px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
+}
+
+.sticky-btn-whatsapp {
+  flex: 1.25;
+  background: linear-gradient(180deg, #25d366 0%, #1da851 100%);
+  color: #ffffff;
+  padding: 10px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 800;
+  font-size: 0.85rem;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 3px 10px rgba(37, 211, 102, 0.35);
+  animation: pulse-soft 2.5s infinite;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* 4. WhatsApp Order Modal Popup */
+.wa-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.wa-modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+@media (min-width: 600px) {
+  .wa-modal-overlay {
+    align-items: center;
+    padding: 20px;
+  }
+}
+
+.wa-modal-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 600px) {
+  .wa-modal-card {
+    border-radius: 20px;
+    transform: scale(0.95) translateY(20px);
+  }
+}
+
+.wa-modal-overlay.active .wa-modal-card {
+  transform: translateY(0);
+}
+
+@media (min-width: 600px) {
+  .wa-modal-overlay.active .wa-modal-card {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.wa-modal-header {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid #25d366;
+}
+
+.wa-modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wa-brand-icon {
+  width: 40px;
+  height: 40px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.wa-modal-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.wa-modal-subtitle {
+  font-size: 0.76rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.wa-modal-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.wa-modal-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.wa-modal-body {
+  padding: 18px 20px 24px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Package Selector Inside Modal */
+.wa-package-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wa-package-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 480px) {
+  .wa-package-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.wa-package-item {
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  background: #fafafa;
+}
+
+.wa-package-item.active {
+  border-color: #22c55e;
+  background: #f0fdf4;
+  box-shadow: 0 0 0 1px #22c55e;
+}
+
+.wa-pkg-badge {
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 999px;
+  letter-spacing: 0.2px;
+}
+
+.wa-pkg-qty {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--dark);
+}
+
+.wa-pkg-price {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--accent);
+  margin-top: 2px;
+}
+
+.wa-pkg-desc {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Form Groups */
+.wa-form-group {
+  margin-bottom: 12px;
+}
+
+.wa-form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 5px;
+}
+
+.wa-form-group label .req {
+  color: #dc2626;
+}
+
+.wa-input,
+.wa-select,
+.wa-textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-main);
+  font-size: 16px;
+  color: var(--dark);
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wa-input:focus,
+.wa-select:focus,
+.wa-textarea:focus {
+  outline: none;
+  border-color: #25d366;
+  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.2);
+}
+
+.wa-input.error,
+.wa-select.error,
+.wa-textarea.error {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
+.wa-error-msg {
+  color: #dc2626;
+  font-size: 0.72rem;
+  margin-top: 4px;
+  display: none;
+  font-weight: 600;
+}
+
+.wa-input.error ~ .wa-error-msg,
+.wa-select.error ~ .wa-error-msg,
+.wa-textarea.error ~ .wa-error-msg {
+  display: block;
+}
+
+/* Trust Badges in Modal */
+.wa-trust-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #f8fafc;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  margin: 14px 0;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.wa-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Big Submit Button */
+.btn-wa-submit {
+  width: 100%;
+  background: linear-gradient(180deg, #25d366 0%, #1ea952 100%);
+  color: #ffffff;
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.btn-wa-submit span.btn-main-txt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-wa-submit small {
+  font-size: 0.72rem;
+  font-weight: 500;
+  opacity: 0.9;
+  text-transform: none;
+}
+
+.btn-wa-submit:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.btn-wa-submit:active {
+  transform: translateY(0);
+}
