@@ -108,6 +108,61 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // 3b. Mobile-Optimized Sticky Bottom Bar Visibility Controller
+  (function initStickyBarVisibility() {
+    var stickyBar = document.querySelector('.sticky-bottom-bar');
+    var orderFormSection = document.getElementById('order-form');
+    if (!stickyBar || !orderFormSection) return;
+
+    function updateStickyBar() {
+      var rect = orderFormSection.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      // In view if the form overlaps the visible screen area
+      var inView = rect.top < (vh - 30) && rect.bottom > 30;
+      if (inView) {
+        stickyBar.classList.add('hidden');
+      } else {
+        stickyBar.classList.remove('hidden');
+      }
+    }
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            stickyBar.classList.add('hidden');
+          } else {
+            stickyBar.classList.remove('hidden');
+          }
+        });
+      }, {
+        root: null,
+        threshold: [0, 0.05, 0.15],
+        rootMargin: '0px 0px -30px 0px'
+      });
+      observer.observe(orderFormSection);
+    }
+
+    // Passive scroll & touchmove listener for mobile in-app browsers (Facebook, Instagram, TikTok WebViews)
+    var ticking = false;
+    function onScrollOrTouch() {
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          updateStickyBar();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScrollOrTouch, { passive: true });
+    window.addEventListener('touchmove', onScrollOrTouch, { passive: true });
+    window.addEventListener('resize', onScrollOrTouch, { passive: true });
+
+    // Initial check on page load
+    updateStickyBar();
+  })();
+
   // 4. FAQ Accordion Toggle
   var faqQuestions = document.querySelectorAll('.faq-question');
   faqQuestions.forEach(function (button) {
