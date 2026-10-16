@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        window.location.href = './thank-you.html';
+        window.location.href = '/ear-cleaner/thank-you.html';
       }
     }
   });

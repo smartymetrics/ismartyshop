@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed | iSmartyShop</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/favicon.png">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Facebook / Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1215552739327356');
+    fbq('track', 'PageView');
+    
+    // Smart Deduplication: Fires Purchase & Lead on first order, 
+    // but blocks duplicate events if the buyer reloads or refreshes within 30 minutes
+    var now = Date.now();
+    var lastPurchase = parseInt(localStorage.getItem('ismarty_last_purchase_time') || '0', 10);
+    var sessionDone = sessionStorage.getItem('ismarty_purchase_done') === 'true';
+    var isDuplicate = sessionDone || ((now - lastPurchase) < (30 * 60 * 1000)); // 30 mins
+
+    if (!isDuplicate) {
+      fbq('track', 'Purchase', {
+        content_name: 'Smart Visual Ear Cleaner',
+        content_type: 'product',
+        value: 25000,
+        currency: 'NGN'
+      });
+      fbq('track', 'Lead', {
+        content_name: 'Smart Visual Ear Cleaner',
+        currency: 'NGN'
+      });
+      sessionStorage.setItem('ismarty_purchase_done', 'true');
+      localStorage.setItem('ismarty_last_purchase_time', now.toString());
+      console.log('Meta Pixel: Purchase & Lead events recorded successfully.');
+    } else {
+      console.log('Meta Pixel: Page reload detected within 30 minutes. Duplicate Purchase event prevented.');
+    }
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" 
+         src="https://www.facebook.com/tr?id=1215552739327356&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Facebook / Meta Pixel Code -->
+</head>
+<body style="padding-bottom: 20px;">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container brand-wrapper">
+      <a href="./" class="brand-logo">
+        <img src="assets/images/logo.jpg" alt="iSmartyShop Logo" class="brand-logo-img">
+      </a>
+      <div class="delivery-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Order Confirmed
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="thank-you-box">
+      
+      <!-- Success Icon -->
+      <div class="success-badge-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <h1 class="thank-you-title">Congratulations! Your Order Has Been Received</h1>
+      <p class="thank-you-subtitle">
+        Thank you for shopping with iSmartyShop. We have received your order details and our team is already processing it for dispatch.
+      </p>
+
+      <!-- Order Details Summary -->
+      <div class="order-summary-card">
+        <div class="summary-row">
+          <span style="color: var(--text-muted);">Product</span>
+          <span style="font-weight: 700;">Smart Visual Ear Cleaner Kit</span>
+        </div>
+        <div class="summary-row">
+          <span style="color: var(--text-muted);">Delivery Type</span>
+          <span style="color: var(--accent); font-weight: 700;">Free Nationwide Delivery</span>
+        </div>
+        <div class="summary-row">
+          <span style="color: var(--text-muted);">Payment Method</span>
+          <span>Payment on Delivery (Cash or Transfer)</span>
+        </div>
+        <div class="summary-row">
+          <span style="color: var(--text-muted);">Delivery Status</span>
+          <span style="color: #b45309; font-weight: 700;">Pending Call Verification</span>
+        </div>
+      </div>
+
+      <!-- Instant WhatsApp Speed Confirmation Button -->
+      <a href="https://wa.me/2348109178477?text=Hello%20iSmartyShop,%20I%20just%20placed%20an%20order%20for%20the%20Smart%20Visual%20Ear%20Cleaner%20on%20your%20website.%20Kindly%20confirm%20my%20delivery." target="_blank" class="btn-whatsapp-confirm">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.584 1.771.867 2.802.867 3.179 0 5.765-2.587 5.767-5.766.001-3.181-2.584-5.754-5.773-5.754zm7.986 5.765c-.002 4.412-3.59 7.999-8.002 7.999-1.393 0-2.698-.363-3.83-1.026l-4.488 1.176 1.199-4.383c-.733-1.189-1.144-2.581-1.143-4.041.002-4.413 3.592-8 8.005-8 4.412 0 7.962 3.587 7.962 8zm-5.467 2.617c-.201-.1-.718-.354-.83-.396-.112-.041-.194-.062-.276.062-.082.124-.316.396-.388.479-.071.083-.143.093-.245.042-.102-.052-.43-.158-.819-.505-.302-.27-.506-.604-.566-.707-.059-.104-.006-.16.045-.211.046-.046.102-.124.153-.186.051-.062.068-.104.102-.176.034-.073.017-.135-.008-.187-.026-.052-.276-.665-.378-.91-.1-.24-.202-.207-.276-.211-.071-.004-.153-.005-.235-.005-.082 0-.214.031-.326.155-.112.125-.43.421-.43 1.026s.44 1.191.501 1.274c.061.083.865 1.321 2.097 1.853.293.127.522.203.7.26.294.094.562.081.774.049.236-.035.718-.293.82-.576.102-.284.102-.527.071-.577-.031-.051-.112-.082-.214-.134z"/>
+        </svg>
+        Click Here To Confirm On WhatsApp
+      </a>
+
+      <!-- What Happens Next Guide -->
+      <div style="text-align: left; margin-top: 28px;">
+        <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--dark); margin-bottom: 14px;">
+          What Happens Next? (3 Quick Steps)
+        </h3>
+
+        <div class="steps-container">
+          <div class="step-row">
+            <div class="step-badge" style="background: var(--accent);">1</div>
+            <div class="step-details">
+              <h4>Phone Verification Call</h4>
+              <p>Our customer service agent will call you within 24 hours to verify your delivery address and schedule your dispatch.</p>
+            </div>
+          </div>
+
+          <div class="step-row">
+            <div class="step-badge" style="background: var(--accent);">2</div>
+            <div class="step-details">
+              <h4>Package Dispatched</h4>
+              <p>Your order will be handed to our logistics rider. Lagos orders arrive in 24 to 48 hours; other states take 2 to 4 days.</p>
+            </div>
+          </div>
+
+          <div class="step-row">
+            <div class="step-badge" style="background: var(--accent);">3</div>
+            <div class="step-details">
+              <h4>Inspect & Pay At Doorstep</h4>
+              <p>When the rider delivers the parcel to you, inspect it and pay for your package using cash or bank transfer.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone Alert Reminder -->
+        <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius-sm); padding: 14px; margin-top: 20px;">
+          <p style="font-size: 0.86rem; color: #92400e; font-weight: 700; margin: 0;">
+            ⚠️ Please keep your phone lines reachable so our delivery rider does not miss you when arriving at your location.
+          </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 24px;">
+          <a href="index.html" style="font-size: 0.88rem; color: var(--primary); font-weight: 700;">
+            &larr; Return to Product Page
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 iSmartyShop. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

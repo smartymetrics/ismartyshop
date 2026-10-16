@@ -1,0 +1,17 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/thank-you.html",
+      "destination": "/ear-cleaner/thank-you.html"
+    },
+    {
+      "source": "/thank-you",
+      "destination": "/ear-cleaner/thank-you.html"
+    },
+    {
+      "source": "/ear-cleaner/thank-you",
+      "destination": "/ear-cleaner/thank-you.html"
+    }
+  ]
+}
