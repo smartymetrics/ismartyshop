@@ -29,7 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        window.location.href = '/ear-cleaner/thank-you.html';
+        // Dynamically resolve to the product's own thank-you page
+        var currentPath = window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
+        window.location.href = currentPath ? (currentPath + '/thank-you.html') : '/ear-cleaner/thank-you.html';
       }
     }
   });
